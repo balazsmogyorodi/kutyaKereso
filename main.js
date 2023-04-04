@@ -1,79 +1,69 @@
-const kutyaLista = [
-    { nev: "Dézi", kor: "14", fajta: "keverék" },
-    { nev: "Fruzsina", kor: "12", fajta: "foxiterrier" },
-    { nev: "Bodri", kor: "10", fajta: "puli" },
-    { nev: "Daci", kor: "7", fajta: "keverék" },
-]
-const neve = "név";
-const kora = "kor";
-const fajtaja = "fajta";
+import{OBJEKTUMLISTA} from "./lista.js";
+import {rendezesObjektum} from "./rendezes.js";
+
+const kuka = `<img src="képek/kuka.png" alt="tölés" class="kuka"`
+$(function(){
+    init();
+
+
+  });
+
+
+function init(){
+  console.log("hi");
+  const articleElem = $("article");
+  let tablazat = tablazatKeszit(OBJEKTUMLISTA);
+  console.log(tablazat);
+  articleElem.html(tablazat);
+  const thElem = $("th");
+  thElem.on("click", function(){
+    let kulcs = $(event.target).attr("id")
+    rendezesObjektum(OBJEKTUMLISTA, kulcs);
+    console.log(OBJEKTUMLISTA);
+    init();
+  });
+  const kukaIcon = $(".kuka");
+  kukaIcon.on("click", function(){
+    const kuka = $(this);
+    const sor = kuka.attr("id");
+    torles(sor);
+
+
+    console.log(sor);
+
+
+    
+ 
 
 
 
+  });
 
 
+  
 
-
-$(function () {
-    const tablazatMegjelolo = $("article")
-    const kiiras = tablazatHTML(rendezo);
-    tablazatMegjelolo.append(kiiras);
-    const sorrend = $('#rendezo th')
-    sorrend.on("click", rendezes);
-
-
-
-
-
-});
-
-
-function tablazatHTML(rendezo) {
-    let kiiras = "<table class='table table-bordered table-striped'>";
-    kiiras += `<tr class="table-dark" id="rendezo"> <th id="nev"> ${neve} &#8645 </th > <th id="kor"> ${kora} &#8645 </th> <th id="faj"> ${fajtaja} &#8645 </th> </tr>`
-    for (let index = 0; index < rendezo.length; index++) {
-        kiiras += "<tr>"
-        kiiras += "<td>" + rendezo[index].nev + "</td> <td>" + rendezo[index].kor + "</td> <td>" + rendezo[index].fajta + "</td>";
-        kiiras += "</tr>"
+}
+function tablazatKeszit(OBJEKTUMLISTA){
+    let tablazat = "<table class='table table-striped'>";
+    tablazat += " <thead class='table-dark'>";
+    tablazat += "<tr> <th id='nev'> Név: </th> <th id='kor'>Kor:</th><th id='fajta'> Fajta: </th> <th> </th></tr>"
+    tablazat += "</thead>" 
+    for (let index = 0; index < OBJEKTUMLISTA.length; index++) {
+      tablazat +="<tr>";
+      tablazat += "<td>" + OBJEKTUMLISTA[index].nev + "</td>" + "<td>" + OBJEKTUMLISTA[index].kor +"</td>" + "<td>" + OBJEKTUMLISTA[index].fajta +"</td>" + "<td>" + kuka + `id="${index}">` + "</td>";
+      tablazat +="</tr>";
     }
-    kiiras += "</table>";
-    return kiiras
-}
-
-function rendezes() {
-    const esemeny = $(event.target);
-    kulcs = esemeny.attr("id");
-    console.log(kulcs);
-    rendezo(kulcs);
-
-}
-
-
-
-function rendezesSzovegszerint(kulcs) {
-    kutyaLista.sort(function (a, b) {
-        if (a[kulcs] > b[kulcs]) {
-            return +1;
-        } else {
-            return -1;
-        }
-    });
-}
-function rendezesSzamszerint(kulcs) {
-    kutyaLista.sort(function (a, b) {
-      return a[kulcs] - b[kulcs];
-    });
+    tablazat += "</table>";
+    
+    return tablazat += "</table>";
+  
+  
   }
 
 
-function rendezo(kulcs) {
-    if (kulcs == "nev") {
-        rendezesSzovegszerint(kulcs);
-    }
-    if (kulcs == "kor") {
-        rendezesSzamszerint(kulcs);
-    }
-    if (kulcs == "faj") {
-        rendezesSzovegszerint(kulcs);
-    }
-}
+  function torles() {
+
+
+    
+  }
+  
