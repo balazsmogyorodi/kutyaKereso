@@ -1,44 +1,39 @@
 import { OBJEKTUMLISTA } from "./lista.js";
 import { rendezesObjektum } from "./rendezes.js";
 const kuka = `<img src="képek/kuka.png" alt="tölés" class="kuka"`;
+const round = `class="szort"`;
+const szortirozo = `"<tr id ='semmi'> <th id='nev'${round}> Név: </th> <th id='kor'  ${round}>Kor:</th><th id='fajta'  ${round} > Fajta: </th> <th class='üres'> </th></tr>";`
+console.log(szortirozo);
 $(function () {
   init();
 });
 
 function init() {
   console.log("hi");
+  const lista = OBJEKTUMLISTA; 
   const articleElem = $("article");
-  let tablazat = tablazatKeszit(OBJEKTUMLISTA);
+  let tablazat = tablazatKeszit(lista);
   console.log(tablazat);
   articleElem.html(tablazat);
-  const thElem = $("th");
+  const thElem = $(".szort");
   thElem.on("click", function () {
     let kulcs = $(event.target).attr("id");
-    rendezesObjektum(OBJEKTUMLISTA, kulcs);
-    console.log(OBJEKTUMLISTA);
+    rendezesObjektum(lista, kulcs);
+    console.log(lista);
     init();
   });
   kukazas();
 
-
 }
-  function kukazas(){
+function kukazas() {
   const kukaIcon = $(".kuka");
   kukaIcon.on("click", function () {
     const kuka = $(this);
     const sor = kuka.attr("id");
-   torles(sor);
+    OBJEKTUMLISTA.splice(sor,1)
+    init()
   });
-}
-  function torles(sor) {
-      $(document).ready(function(){
-      $("table").on('click', '.kuka',function(){
-          $(this).closest('tr').remove();
-          console.log(OBJEKTUMLISTA[sor].nev);
-          delete OBJEKTUMLISTA[sor];
-         
-      });
-    });
+ 
 }
 
 
@@ -46,12 +41,14 @@ function init() {
 
 function tablazatKeszit(OBJEKTUMLISTA) {
   let tablazat = "<table class='table table-striped'>";
-  tablazat += " <thead class='table-dark'>";
-  tablazat +=
-    "<tr id ='semmi'> <th id='nev'> Név: </th> <th id='kor'>Kor:</th><th id='fajta'> Fajta: </th> <th> </th></tr>";
+  tablazat += "<thead class='table-dark'>";
+  tablazat += szortirozo;
   tablazat += "</thead>";
+
   for (let index = 0; index < OBJEKTUMLISTA.length; index++) {
-    tablazat += `<tr id="${index}">`;
+    console.log(OBJEKTUMLISTA[index])
+    console.log(index)
+    tablazat += `<tr id="${OBJEKTUMLISTA[index].id}">`;
     tablazat +=
       "<td>" +
       OBJEKTUMLISTA[index].nev +
@@ -70,5 +67,5 @@ function tablazatKeszit(OBJEKTUMLISTA) {
   }
   tablazat += "</table>";
 
-  return (tablazat += "</table>");
+  return (tablazat);
 }
