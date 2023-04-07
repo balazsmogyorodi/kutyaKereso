@@ -1,3 +1,48 @@
+header {
+
+    padding-bottom: 30px;
+}
+
+
+nav{
+    
+   
+    padding-bottom: 50px;
+    padding-top: 30px;
+   
+}
+.kutya {
+  
+    
+    padding-bottom: 30px;
+}
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 3fr;
+
+}
+
+
+.menu .hozzaad {
+    margin-bottom: 20px;
+    padding-bottom: 30px;
+
+
+}
+.menu {
+    display: grid;
+   
+    margin-left: 5px;
+
+}
+.gombok {
+    margin-left: auto;
+    padding-right: 80px;
+}
+
+
+
+
 .kuka {
     width: 3%;
 
@@ -5,6 +50,15 @@
 
 }
 th {
-border: 1px solid white;
+border: 1px solid red;
 
+}
+
+.ujKutya{
+  
+    border-top:1px solid black ;
+    border-bottom:1px solid black ;
+    padding-bottom: 30px;
+    padding-top: 20px;
+    background-color: wheat;
 }
