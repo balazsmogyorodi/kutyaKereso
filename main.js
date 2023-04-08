@@ -1,10 +1,11 @@
 import { OBJEKTUMLISTA } from "./lista.js";
 import { rendezesObjektum } from "./rendezes.js";
-import { listabaUjelem, alapNav } from "./webkkiras.js";
+import { listabaUjelem, alapNav, sorvaltozo } from "./webkkiras.js";
 const kuka = `<img src="képek/kuka.png" alt="tölés" class="kuka"`;
 const round = `class="szort"`;
 const kutya = "";
-const szortirozo = `"<tr id ='semmi'> <th id='nev'${round}> Név: </th> <th id='kor'  ${round}>Kor:</th><th id='fajta'  ${round} > Fajta: </th> <th class='üres'> </th></tr>";`;
+const atalakitoIcon = `<img src="képek/ceruza.png" alt="tölés" class="cerka" width="3%"`
+const szortirozo = `"<tr id ='semmi'> <th id='nev'${round}> Név: </th> <th id='kor'  ${round}>Kor:</th><th id='fajta'  ${round} > Fajta: </th> <th class='üres'> </th> <th class="üres"> </th></tr>";`;
 console.log(szortirozo);
 $(function () {
   init();
@@ -22,6 +23,7 @@ function init() {
     rendezesObjektum(lista, kulcs);
     init();
   });
+  modifikalas();
   kukazas();
   const gomb = $("#add");
   gomb.on("click", function () {
@@ -50,9 +52,9 @@ function hozzaad() {
     if ((kutyaNev.length < 3) || (kutyaFaj.length < 3) || (kutyaKor == "")) {
       const hiba = $(".warning");
       hiba.html("<p>Kérem mindegyik mezőbe írjon megfelelő mennyiségű karaktert!</p>")
-        kutyaNev == "";
-        kutyaKor == "";
-        kutyaFaj == "";
+      kutyaNev == "";
+      kutyaKor == "";
+      kutyaFaj == "";
       hozzaad();
     } else {
       OBJEKTUMLISTA.push({ nev: kutyaNev, kor: kutyaKor, fajta: kutyaFaj });
@@ -64,12 +66,55 @@ function hozzaad() {
   });
 }
 
-function meghatarozo(ertek) {
-  ertek.keyup(function () {
-    kutya = $(this).val();
-    return kutya;
+function modifikalas() {
+  const modificIcon = $(".cerka");
+  modificIcon.on("click", function () {
+    const ceruzaSor = $(this).attr("id");
+    console.log(ceruzaSor);
+    const sorValtozas = $(`#sor${ceruzaSor}`);
+    const ujAdatSor = sorvaltozo(OBJEKTUMLISTA[ceruzaSor]);
+    sorValtozas.html(ujAdatSor);
+    const megse = $("#vissza");
+    megse.on("click", function () {
+      init();
+    });
+    adatVarialas(ceruzaSor);
   });
 }
+
+
+
+function adatVarialas(ceruzaSor) {
+  let kutyaKor = OBJEKTUMLISTA[ceruzaSor].kor;
+  let kutyaFaj = OBJEKTUMLISTA[ceruzaSor].fajta;
+  let kutyaNev = OBJEKTUMLISTA[ceruzaSor].nev;
+  $("#neve").keyup(function () {
+    kutyaNev = $(this).val();
+  });
+  $("#kora").keyup(function () {
+    kutyaKor = $(this).val();
+  });
+  $("#fajtaja").keyup(function () {
+    kutyaFaj = $(this).val();
+  });
+  $(".modos").on("click", function () {
+    if ((kutyaNev.length < 3) || (kutyaFaj.length < 3) || (kutyaKor == "")) {
+      console.log("visszza");
+      console.log(kutyaNev);
+      console.log(kutyaKor);
+      console.log(kutyaFaj);
+      modifikalas();
+    }
+    else {
+      OBJEKTUMLISTA[ceruzaSor] = { nev: kutyaNev, kor: kutyaKor, fajta: kutyaFaj };
+      init()
+    }
+  });
+}
+
+
+
+
 
 function kukazas() {
   const kukaIcon = $(".kuka");
@@ -89,7 +134,7 @@ function tablazatKeszit(OBJEKTUMLISTA) {
   for (let index = 0; index < OBJEKTUMLISTA.length; index++) {
     console.log(OBJEKTUMLISTA[index]);
     console.log(index);
-    tablazat += `<tr id="${index}">`;
+    tablazat += `<tr id="sor${index}">`;
     tablazat +=
       "<td>" +
       OBJEKTUMLISTA[index].nev +
@@ -104,7 +149,7 @@ function tablazatKeszit(OBJEKTUMLISTA) {
       kuka +
       `id="${index}">` +
       "</td>";
-    tablazat += "</tr>";
+    tablazat += "<td>" + atalakitoIcon + `id="${index}">` + "</td>" + "</tr>";
   }
   tablazat += "</table>";
   return tablazat;

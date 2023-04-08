@@ -1,5 +1,5 @@
 export function listabaUjelem() {
-    let elem = `<div class="ujKutya"> <h2>Kutya hozzáadása:</h2>
+  let elem = `<div class="ujKutya"> <h2>Kutya hozzáadása:</h2>
   <div class="kutya">
     <div class="menu">
       <form action="get">
@@ -29,10 +29,10 @@ export function listabaUjelem() {
   </div>
   <div class="warning"></div>
           `;
-    return elem;
-  }
-  export function alapNav() {
-    let elem = `<h2>Keresés</h2>
+  return elem;
+}
+export function alapNav() {
+  let elem = `<h2>Keresés</h2>
   <div class="kutya">
   
     <div class="menu">
@@ -60,5 +60,18 @@ export function listabaUjelem() {
       </form>
     </div>
   </div>`;
-    return elem;
-  }
+  return elem;
+}
+
+
+export function sorvaltozo(ertek){
+  const kiiras = `<td><input type="text" name="neve" id="neve" value="${ertek.nev}"></td>
+  <td><input type="text" name="kora" id="kora" value="${ertek.kor}"></td>
+  <td><input type="text" name="fajtaja" id="fajtaja" value="${ertek.fajta}"></input></td>
+  <td><input type="button" value="módositás" name="modosit" id="modosit" class="modos"></td>
+  <td> <input type="button" value="mégse" name="vissza" id="vissza"></td>`;
+  return kiiras
+
+
+
+}
