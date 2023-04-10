@@ -65,7 +65,7 @@ export function alapNav() {
         <label for="fajta">Kutya fajta:</label>
         <br />
         <input type="text" id="fajtaKeres" name="fajtaKeres" />
-        <ul id="korResult"></ul> 
+        <ul id="fajtaResult"></ul> 
     </div>
     <div class="gombok">
       <br>
