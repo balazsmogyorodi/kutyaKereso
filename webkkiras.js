@@ -1,3 +1,14 @@
+export function searchKereses(){
+  let elemek = 
+  `<input type="text" id="searchBar" placeholder="Search...">
+  <ul id="results"></ul>`;
+  return elemek;
+
+}
+
+
+
+
 export function listabaUjelem() {
   let elem = `<div class="ujKutya"> <h2>Kutya hozzáadása:</h2>
   <div class="kutya">
@@ -41,17 +52,20 @@ export function alapNav() {
       <div>
         <label for="nev">Kutya neve:</label>
         <br />
-        <input type="text" id="nev" name="nev" />  
+        <input type="text" id="nevKeres" name="nevKeres" /> 
+        <ul id="nevResult"></ul> 
       </div>     
       <div>
         <label for="kor">Kutya életkora:</label>
         <br />
-        <input type="text" id="kor" name="kor" />
+        <input type="text" id="korKeres" name="korKeres" />
+        <ul id="korResult"></ul> 
       </div>
       <div>
         <label for="fajta">Kutya fajta:</label>
         <br />
-        <input type="text" id="fajta" name="fajta" />
+        <input type="text" id="fajtaKeres" name="fajtaKeres" />
+        <ul id="korResult"></ul> 
     </div>
     <div class="gombok">
       <br>

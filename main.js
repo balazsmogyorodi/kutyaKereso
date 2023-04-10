@@ -1,6 +1,6 @@
 import { OBJEKTUMLISTA } from "./lista.js";
 import { rendezesObjektum } from "./rendezes.js";
-import { listabaUjelem, alapNav, sorvaltozo } from "./webkkiras.js";
+import { listabaUjelem, alapNav, sorvaltozo, searchKereses} from "./webkkiras.js";
 const kuka = `<img src="képek/kuka.png" alt="tölés" class="kuka"`;
 const round = `class="szort"`;
 const kutya = "";
@@ -32,6 +32,51 @@ function init() {
     ujElemek.html(uj);
     hozzaad();
   });
+  kereso("nevKeres", "nevResult", "nevek");
+  kereso("korKereso", "korResult", "korok")
+  kereso("fajtaKeres", "fajtaResult", "fajtak")
+}
+
+function kereso(keresett, eredmeny, kapott){
+  const searchBar = document.getElementById(keresett);
+  const results = document.getElementById(eredmeny);
+  searchBar.addEventListener('input', () => {
+  const query = searchBar.value.toLowerCase();
+  results.innerHTML = '';
+  if (kapott == "nevek"){
+  const filteredData = OBJEKTUMLISTA.filter(item => {
+    const name = item.nev.toLowerCase();
+    return name.includes(query);
+  });
+  filteredData.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item.nev;
+    results.appendChild(li);
+  });
+}
+if (kapott == "korok"){
+  const filteredData = OBJEKTUMLISTA.filter(item => {
+    const name = item.kor.toLowerCase();
+    return name.includes(query);
+  });
+  filteredData.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item.kor;
+    results.appendChild(li);
+  });
+}
+if (kapott == "fajtak"){
+  const filteredData = OBJEKTUMLISTA.filter(item => {
+    const name = item.fajta.toLowerCase();
+    return name.includes(query);
+  });
+  filteredData.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item.fajta;
+    results.appendChild(li);
+  });
+}
+});
 }
 
 function hozzaad() {
@@ -80,6 +125,7 @@ function modifikalas() {
     });
     adatVarialas(ceruzaSor);
   });
+  
 }
 
 
