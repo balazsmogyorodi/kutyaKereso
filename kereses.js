@@ -5,18 +5,16 @@ export function szuLista(kulcs, adatLista, szuresiFeltetel) {
             const szurtiLista = adatLista.filter(function (elem) {
                 let szf = "";
                 if (typeof elem[kulcs] == "number") {
-                    if(szuresFeltetel[0] == "=") {
-                        szf = "==" + szuresFeltetel;
+                    if(szuresiFeltetel == "=") {
+                        szf = "==" + szuresiFeltetel;
                     } else{
-                            szf = szuresFeltetel;
+                            szf = szuresiFeltetel;
                     }
                         return eval(elem[kulcs] + szf);
                 } else {
                     return elem[kulcs].toUpperCase().includes(szuresiFeltetel.toUpperCase());
                         
                 }
-                
-
             });
             return szurtiLista;
 

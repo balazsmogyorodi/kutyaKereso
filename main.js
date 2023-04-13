@@ -1,7 +1,8 @@
 import { OBJEKTUMLISTA } from "./lista.js";
 import { rendezesObjektum } from "./rendezes.js";
-import { listabaUjelem, alapNav, sorvaltozo, searchKereses} from "./webkkiras.js";
+import { listabaUjelem, alapNav, sorvaltozo, searchKereses } from "./webkkiras.js";
 import { szuLista } from "./kereses.js";
+let kapcsolo = true;
 const kuka = `<img src="képek/kuka.png" alt="tölés" class="kuka"`;
 const round = `class="szort"`;
 const kutya = "";
@@ -15,7 +16,6 @@ $(function () {
 function init(lista) {
   const articleElem = $("article");
   let tablazat = tablazatKeszit(lista);
-  console.log(tablazat);
   articleElem.html(tablazat);
   const thElem = $(".szort");
   thElem.on("click", function () {
@@ -32,8 +32,6 @@ function init(lista) {
     ujElemek.html(uj);
     hozzaad();
   });
-  //kereso("nevKeres", "nevResult", "nevek");
-  //kereso("fajtaKeres", "fajtaResult", "fajtak");
   feketeFeher();
   search();
 
@@ -41,11 +39,25 @@ function init(lista) {
 }
 
 function feketeFeher() {
-  const kapcsol = document.querySelector("#villany")
-  kapcsol.addEventListener("click", function () {
-    const valt = document.querySelector("body");
-    valt.style.backgroundColor="black";
-    console.log("hello")
+
+  const kapcsol = $("#villany")
+  kapcsol.on("click", function () {
+    kapcsolo = !kapcsolo;
+    if (kapcsolo == true) {
+      $("body").removeClass("sotet");
+      $("body").addClass("vilagos");
+    }
+    else {
+      $("body").removeClass("vilagos");
+      $("body").addClass("sotet");
+
+
+    }
+
+
+
+
+
 
 
 
@@ -56,7 +68,7 @@ function feketeFeher() {
 
 
 function search() {
-  
+
   let kutyaKor = "";
   let kutyaFaj = "";
   let kutyaNev = "";
@@ -76,35 +88,9 @@ function search() {
     let szuresEredmeny = szuLista("fajta", OBJEKTUMLISTA, kutyaFaj);
     init(szuresEredmeny);
   });
-
-  
-
-
-
 }
 
-function kereso(keresett, eredmeny, kapott){
-  const searchBar = document.getElementById(keresett);
-  const results = document.getElementById(eredmeny);
-  searchBar.addEventListener('input', () => {
-  const query = searchBar.value.toLowerCase();
-  results.innerHTML = '';
-  if (kapott == "nevek"){
-  const filteredData = OBJEKTUMLISTA.filter(item => {
-    const name = item.nev.toLowerCase();
-    return name.includes(query);
-  });
-  init(filteredData);
-}
-if (kapott == "fajtak"){
-  const filteredData = OBJEKTUMLISTA.filter(item => {
-    const name = item.fajta.toLowerCase();
-    return name.includes(query);
-  });
-  init(filteredData);
-}
-});
-}
+
 
 function hozzaad() {
   const ujAdat = $("#feltolt");
@@ -146,13 +132,17 @@ function modifikalas() {
     const sorValtozas = $(`#sor${ceruzaSor}`);
     const ujAdatSor = sorvaltozo(OBJEKTUMLISTA[ceruzaSor]);
     sorValtozas.html(ujAdatSor);
+
     const megse = $("#vissza");
+
     megse.on("click", function () {
       init(OBJEKTUMLISTA);
+
     });
     adatVarialas(ceruzaSor);
+
   });
-  
+
 }
 
 
@@ -205,8 +195,6 @@ function tablazatKeszit(OBJEKTUMLISTA) {
   tablazat += szortirozo;
   tablazat += "</thead>";
   for (let index = 0; index < OBJEKTUMLISTA.length; index++) {
-    console.log(OBJEKTUMLISTA[index]);
-    console.log(index);
     tablazat += `<tr id="sor${index}">`;
     tablazat +=
       "<td>" +

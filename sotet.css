@@ -1,32 +1,18 @@
-.ujKutya{
-    border-top:1px solid black ;
-    border-bottom:1px solid black ;
-    padding-bottom: 30px;
-    padding-top: 20px;
-    background-color: wheat;
-}
-
 
 
 body {
-    background-color: var(--hatter);
+    background-color: black;
 }
 
-.sotet{
-    --hatter:black;
-}
-.vilagos{
-    --hatter:white;
-}
+
+
 
 header {
-
     padding-bottom: 30px;
 }
 
 #villany {
     width: 50px;
-
 }
 
 
@@ -74,4 +60,17 @@ form {
 
 
 
+}
+th {
+border: 1px solid red;
+
+}
+
+.ujKutya{
+  
+    border-top:1px solid black ;
+    border-bottom:1px solid black ;
+    padding-bottom: 30px;
+    padding-top: 20px;
+    background-color: wheat;
 }
