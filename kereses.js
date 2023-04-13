@@ -1,20 +1,18 @@
 
-export function szuLista(mit, OBJEKTUMLISTA, adatLista) {
+export function szuLista(kulcs, adatLista, szuresiFeltetel) {
 
-    if (OBJEKTUMLISTA == ""){
-        return adatLista
-    }else{                      //OBJEKTUMLISTA//
+                      //OBJEKTUMLISTA//
             const szurtiLista = adatLista.filter(function (elem) {
                 let szf = "";
-                if (typeof elem[mit] == "number") {
+                if (typeof elem[kulcs] == "number") {
                     if(szuresFeltetel[0] == "=") {
                         szf = "==" + szuresFeltetel;
                     } else{
                             szf = szuresFeltetel;
                     }
-                        return eval(elem[mit] + szf);
+                        return eval(elem[kulcs] + szf);
                 } else {
-                    return elem[mit].toUpperCase().includes(szuresiFeltetel.toUpperCase());
+                    return elem[kulcs].toUpperCase().includes(szuresiFeltetel.toUpperCase());
                         
                 }
                 
@@ -23,7 +21,7 @@ export function szuLista(mit, OBJEKTUMLISTA, adatLista) {
             return szurtiLista;
 
 
-    }
+    
 
 
 }

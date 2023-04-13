@@ -9,12 +9,11 @@ const atalakitoIcon = `<img src="képek/ceruza.png" alt="tölés" class="cerka" 
 const szortirozo = `<tr id ='semmi'> <th id='nev'${round}> Név: </th> <th id='kor'  ${round}>Kor:</th><th id='fajta'  ${round} > Fajta: </th> <th class='üres'> </th> <th class="üres"> </th></tr>`;
 console.log(szortirozo);
 $(function () {
+  $("nav").html(alapNav());
   init(OBJEKTUMLISTA);
 });
 function init(lista) {
-  $("nav").html(alapNav());
   const articleElem = $("article");
-  
   let tablazat = tablazatKeszit(lista);
   console.log(tablazat);
   articleElem.html(tablazat);
@@ -33,29 +32,52 @@ function init(lista) {
     ujElemek.html(uj);
     hozzaad();
   });
-  kereso("nevKeres", "nevResult", "nevek");
-  kereso("fajtaKeres", "fajtaResult", "fajtak");
-
+  //kereso("nevKeres", "nevResult", "nevek");
+  //kereso("fajtaKeres", "fajtaResult", "fajtak");
+  feketeFeher();
   search();
 
+
+}
+
+function feketeFeher() {
+  const kapcsol = document.querySelector("#villany")
+  kapcsol.addEventListener("click", function () {
+    const valt = document.querySelector("body");
+    valt.style.backgroundColor="black";
+    console.log("hello")
+
+
+
+
+
+  });
 }
 
 
 function search() {
+  
   let kutyaKor = "";
   let kutyaFaj = "";
   let kutyaNev = "";
-  $("#nev").keyup(function () {
+  $("#nevKeres").keyup(function () {
+    console.log("hello");
     kutyaNev = $(this).val();
+    let szuresEredmeny = szuLista("nev", OBJEKTUMLISTA, kutyaNev);
+    init(szuresEredmeny);
   });
-  $("#kor").keyup(function () {
+  $("#korKeres").keyup(function () {
     kutyaKor = $(this).val();
+    let szuresEredmeny = szuLista("kor", OBJEKTUMLISTA, kutyaKor);
+    init(szuresEredmeny);
   });
-  $("#fajta").keyup(function () {
+  $("#fajtaKeres").keyup(function () {
     kutyaFaj = $(this).val();
+    let szuresEredmeny = szuLista("fajta", OBJEKTUMLISTA, kutyaFaj);
+    init(szuresEredmeny);
   });
 
-  szuLista(kutyaNev, OBJEKTUMLISTA);
+  
 
 
 
