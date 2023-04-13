@@ -6,7 +6,7 @@ const kuka = `<img src="képek/kuka.png" alt="tölés" class="kuka"`;
 const round = `class="szort"`;
 const kutya = "";
 const atalakitoIcon = `<img src="képek/ceruza.png" alt="tölés" class="cerka" width="3%"`
-const szortirozo = `"<tr id ='semmi'> <th id='nev'${round}> Név: </th> <th id='kor'  ${round}>Kor:</th><th id='fajta'  ${round} > Fajta: </th> <th class='üres'> </th> <th class="üres"> </th></tr>";`;
+const szortirozo = `<tr id ='semmi'> <th id='nev'${round}> Név: </th> <th id='kor'  ${round}>Kor:</th><th id='fajta'  ${round} > Fajta: </th> <th class='üres'> </th> <th class="üres"> </th></tr>`;
 console.log(szortirozo);
 $(function () {
   init(OBJEKTUMLISTA);
