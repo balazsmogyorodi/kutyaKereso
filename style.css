@@ -12,11 +12,17 @@ body {
     background-color: var(--hatter);
 }
 
+h1, h2, p, label {
+    color: var(--szin);
+}
+
 .sotet{
-    --hatter:black;
+    --hatter:rgb(24, 23, 23);
+    --szin:white;
 }
 .vilagos{
     --hatter:white;
+    --szin:black;
 }
 
 header {

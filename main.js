@@ -44,10 +44,18 @@ function feketeFeher() {
   kapcsol.on("click", function () {
     kapcsolo = !kapcsolo;
     if (kapcsolo == true) {
+      $("thead").removeClass("table-light");
+      $("thead").addClass("table-dark");
+      $("table").removeClass("table bg-dark");
+      $("table").addClass("table table-striped");
       $("body").removeClass("sotet");
       $("body").addClass("vilagos");
     }
     else {
+      $("thead").removeClass("table-dark");
+      $("thead").addClass("table-light");
+      $("table").removeClass("table table-striped");
+      $("table").addClass("table table-striped-seccondary-dark");
       $("body").removeClass("vilagos");
       $("body").addClass("sotet");
 
@@ -197,15 +205,15 @@ function tablazatKeszit(OBJEKTUMLISTA) {
   for (let index = 0; index < OBJEKTUMLISTA.length; index++) {
     tablazat += `<tr id="sor${index}">`;
     tablazat +=
-      "<td>" +
+      "<td> <p>" +
       OBJEKTUMLISTA[index].nev +
-      "</td>" +
-      "<td>" +
+      "</p></td>" +
+      "<td> <p>" +
       OBJEKTUMLISTA[index].kor +
-      "</td>" +
-      "<td>" +
+      " </p></td>" +
+      "<td> <p>" +
       OBJEKTUMLISTA[index].fajta +
-      "</td>" +
+      "</p> </td>" +
       "<td>" +
       kuka +
       `id="${index}">` +
