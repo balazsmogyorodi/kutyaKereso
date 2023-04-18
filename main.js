@@ -8,12 +8,12 @@ const round = `class="szort"`;
 const kutya = "";
 const atalakitoIcon = `<img src="képek/ceruza.png" alt="tölés" class="cerka" width="3%"`
 const szortirozo = `<tr id ='semmi'> <th id='nev'${round}> Név: </th> <th id='kor'  ${round}>Kor:</th><th id='fajta'  ${round} > Fajta: </th> <th class='üres'> </th> <th class="üres"> </th></tr>`;
-console.log(szortirozo);
 $(function () {
-  $("nav").html(alapNav());
   init(OBJEKTUMLISTA);
 });
 function init(lista) {
+ 
+  kapcsolo = feketeFeher();
   const articleElem = $("article");
   let tablazat = tablazatKeszit(lista);
   articleElem.html(tablazat);
@@ -24,6 +24,24 @@ function init(lista) {
     init(lista);
   });
   modifikalas();
+  $("nav").html(alapNav());
+  if (kapcsolo == true) {
+    $("thead").removeClass("table-light");
+    $("thead").addClass("table-dark");
+    $("table").removeClass("table bg-dark");
+    $("table").addClass("table table-striped");
+    $("body").removeClass("sotet");
+    $("body").addClass("vilagos");
+  }
+  else {
+    $("thead").removeClass("table-dark");
+    $("thead").addClass("table-light");
+    $("table").removeClass("table table-striped");
+    $("table").addClass("table table-striped-seccondary-dark");
+    $("body").removeClass("vilagos");
+    $("body").addClass("sotet");
+  }
+ 
   kukazas();
   const gomb = $("#add");
   gomb.on("click", function () {
@@ -32,10 +50,7 @@ function init(lista) {
     ujElemek.html(uj);
     hozzaad();
   });
-  feketeFeher();
   search();
-
-
 }
 
 function feketeFeher() {
@@ -60,28 +75,20 @@ function feketeFeher() {
       $("body").addClass("sotet");
 
 
+
     }
 
 
-
-
-
-
-
-
-
-
   });
+  return kapcsolo;
 }
 
 
 function search() {
-
   let kutyaKor = "";
   let kutyaFaj = "";
   let kutyaNev = "";
   $("#nevKeres").keyup(function () {
-    console.log("hello");
     kutyaNev = $(this).val();
     let szuresEredmeny = szuLista("nev", OBJEKTUMLISTA, kutyaNev);
     init(szuresEredmeny);
@@ -198,8 +205,8 @@ function kukazas() {
 }
 
 function tablazatKeszit(OBJEKTUMLISTA) {
-  let tablazat = "<table class='table table-striped'>";
-  tablazat += "<thead class='table-dark'>";
+  let tablazat = "<table>";
+  tablazat += "<thead>";
   tablazat += szortirozo;
   tablazat += "</thead>";
   for (let index = 0; index < OBJEKTUMLISTA.length; index++) {
