@@ -1,8 +1,10 @@
 import  {OBJEKTUMLISTA} from "./lista.js";
 const lista = OBJEKTUMLISTA
+const kosar = [];
 
 $(function () {
-  $("article").html(articleElemek());
+  $("section").html(articleElemek());
+  $("aside").html(asideElemek());
 });
 
 
@@ -15,9 +17,21 @@ function articleElemek() {
        <h3>${OBJEKTUMLISTA[index].nev}</h3>
        <h4>kora ${OBJEKTUMLISTA[index].kor} éves</h4>
        <h5>${OBJEKTUMLISTA[index].fajta}</h5>
-       <button id="${index}">kosar</button>
+       <button class="elem" id="${index}">kosar</button>
    </div>`;
   }
   console.log(kutyaDobozok);
   return kutyaDobozok;
+}
+
+
+function asideElemek() {
+    const termek = $(".elem");
+    termek.on("click", function () {
+      const kutya = $(this);
+      const doboz = kutya.attr("id");
+     
+      console.log(kosar.nev);
+    
+});
 }

@@ -1,3 +1,7 @@
+main {
+    padding: 10px;
+}
+
 .ujKutya{
     border-top:1px solid black ;
     border-bottom:1px solid black ;
@@ -76,8 +80,5 @@ form {
 
 
 .kuka {
-    width: 3%;
-
-
-
+    width: 30px;
 }

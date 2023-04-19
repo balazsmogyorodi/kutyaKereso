@@ -1,0 +1,73 @@
+main {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+grid-template-areas: 
+'h h h'
+'ar ar as'
+'f f f'
+
+;
+
+}
+
+article{
+    grid-area: ar;
+}
+aside {
+    grid-area: as;
+    padding-left: 15px;
+    border: 1px solid black;
+}
+footer {
+    grid-area: f;
+}
+
+section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    text-align: center;
+}
+.kutya{
+    border: solid 1px black;
+    padding-top: 20px ;
+
+}
+header {
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-area: h;
+}
+.kutyusKepek{
+    width: 184px;
+    height: 184px;
+    border: solid 3px black;
+}
+
+@media screen and (max-width: 1400px) {
+main {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+    'h h'
+    'ar as'
+    'f f' ;
+}
+
+section {
+    grid-template-columns: 1fr 1fr;
+}
+}
+@media screen and (max-width: 700px) {
+    main {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+        'h h'
+        'ar as'
+        'f f' ;
+    }
+    
+    section {
+        grid-template-columns: 1fr;
+    }
+    }
