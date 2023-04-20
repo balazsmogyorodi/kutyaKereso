@@ -34,9 +34,19 @@ header {
     padding-bottom: 30px;
 }
 
+.sotetsegVilagossag {
+padding-left: auto;
+
+}
+
+
+
 #villany {
     width: 50px;
-
+    display: block;
+    margin-left: auto;
+    margin-top: -50px;
+  
 }
 
 
@@ -67,9 +77,13 @@ form {
 }
 .menu {
     display: grid;
-   
+  
     margin-left: 5px;
 
+}
+.kutya {
+    display: grid;
+    grid-template-columns: 1fr;
 }
 .gombok {
     margin-left: auto;
@@ -82,3 +96,44 @@ form {
 .kuka {
     width: 30px;
 }
+
+
+
+@media only screen and (max-width: 700px) {
+
+
+form {
+
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+
+
+
+}
+
+@media only screen and (max-width: 600px) {
+    form {
+
+        grid-template-columns: 1fr 1fr;
+    }
+    
+   
+    }
+    @media only screen and (max-width: 550px) {
+        form {
+    
+            grid-template-columns: 1fr;
+        }
+        .gombok {
+            margin-right: auto;
+            margin-left: none;
+    padding-right: 100px;
+    padding-left: 0px;
+            
+        }
+        
+       
+        }
+
+       

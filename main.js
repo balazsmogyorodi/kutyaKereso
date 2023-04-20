@@ -3,7 +3,8 @@ import { rendezesObjektum } from "./rendezes.js";
 import { listabaUjelem, alapNav, sorvaltozo, searchKereses } from "./webkkiras.js";
 import { szuLista } from "./kereses.js";
 let kapcsolo = true;
-const kuka = `<img src="képek/kuka.png" alt="tölés" class="kuka"`;
+let kuka = ``;
+const feherKuka = `<img src="képek/kukaWhite.png" alt="tölés" class="kuka"`;
 const round = `class="szort"`;
 const kutya = "";
 const atalakitoIcon = `<img src="képek/ceruza.png" alt="tölés" class="cerka" width="30px"`
@@ -12,8 +13,9 @@ $(function () {
   init(OBJEKTUMLISTA);
 });
 function init(lista) {
- 
-  kapcsolo = feketeFeher();
+
+
+  feketeFeher();
   const articleElem = $("article");
   let tablazat = tablazatKeszit(lista);
   articleElem.html(tablazat);
@@ -41,7 +43,7 @@ function init(lista) {
     $("body").removeClass("vilagos");
     $("body").addClass("sotet");
   }
- 
+
   kukazas();
   const gomb = $("#add");
   gomb.on("click", function () {
@@ -73,14 +75,16 @@ function feketeFeher() {
       $("table").addClass("table table-striped-seccondary-dark");
       $("body").removeClass("vilagos");
       $("body").addClass("sotet");
+      let tablazat = tablazatKeszit(lista, kapcsolo);
+      articleElem.html(tablazat);
 
 
 
     }
 
-
+    init()
   });
-  return kapcsolo;
+
 }
 
 
@@ -204,7 +208,8 @@ function kukazas() {
   });
 }
 
-function tablazatKeszit(OBJEKTUMLISTA) {
+function tablazatKeszit(OBJEKTUMLISTA, kapcsolo) {
+  kuka = `<img src="képek/kuka.png" alt="tölés" class="kuka"`;
   let tablazat = "<table>";
   tablazat += "<thead>";
   tablazat += szortirozo;
@@ -221,8 +226,10 @@ function tablazatKeszit(OBJEKTUMLISTA) {
       "<td> <p>" +
       OBJEKTUMLISTA[index].fajta +
       "</p> </td>" +
-      "<td>" +
-      kuka +
+      "<td>";
+    console.log(kapcsolo)
+
+    tablazat += kuka +
       `id="${index}">` +
       "</td>";
     tablazat += "<td>" + atalakitoIcon + `id="${index}">` + "</td>" + "</tr>";

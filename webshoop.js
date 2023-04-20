@@ -1,6 +1,6 @@
-import  {OBJEKTUMLISTA} from "./lista.js";
+import { OBJEKTUMLISTA } from "./lista.js";
 const lista = OBJEKTUMLISTA
-const kosar = [];
+const kosar = [{szam: 1}];
 
 $(function () {
   $("section").html(articleElemek());
@@ -26,12 +26,14 @@ function articleElemek() {
 
 
 function asideElemek() {
-    const termek = $(".elem");
-    termek.on("click", function () {
-      const kutya = $(this);
-      const doboz = kutya.attr("id");
-     
-      console.log(kosar.nev);
-    
-});
+  const termek = $(".elem");
+  termek.on("click", function () {
+    const kutya = $(this);
+    const doboz = kutya.attr("id");
+    kosar[0] = OBJEKTUMLISTA[doboz];
+    console.log(kosar.nev);
+
+   
+
+  });
 }
