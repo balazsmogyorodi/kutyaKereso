@@ -27,7 +27,7 @@ else if(empty($pass)){
                 $SESSION['user_name'] = $row['user_name'];
                 $SESSION['name'] = $row['name'];
                 $SESSION['id'] = $row['id'];
-                header("Location: index.html");
+                header("Location: admin.html");
                 exit();
             }else{
                 header("Location: index.php?error=Nem jo a jelszo vagy felhasznalonev!");
